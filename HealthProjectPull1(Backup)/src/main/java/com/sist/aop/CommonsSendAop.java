@@ -41,4 +41,4 @@ public class CommonsSendAop {
 		request.setAttribute("gList", gList);
 		request.setAttribute("newList", newList);
 	}
-}z
+}
