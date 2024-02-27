@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,27 @@
    width: 960px;
 }
 </style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['단어', '단어횟수'],
+          <c:forEach var="vo" items="${list}">
+           ['<c:out value="${vo.word}"/>',    <c:out value="${vo.count}"/>],
+          </c:forEach>
+        ]);
+
+        var options = {
+          title: '내용분석',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 	let bClick=true
@@ -66,8 +88,9 @@
 </script>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	<div class="container" id="fboardApp">
+		<div class="banner-section spad">
+	        <div class="container-fluid">
 			<h3 class="text-center">내용보기</h3>
 			<table class="table">
 				<tr>
@@ -106,6 +129,8 @@
 			</table>
 		</div>
 		<div style="height: 20px"></div>
+		<div id="piechart_3d" style="width: 960px; height: 500px;"></div>
+		</div>
 	</div>
 </body>
 </html>

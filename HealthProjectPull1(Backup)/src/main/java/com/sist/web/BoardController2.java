@@ -10,12 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.dao.*;
+import com.sist.manager.WordManager;
 import com.sist.vo.*;
 
 @Controller
 public class BoardController2 {
 	@Autowired
 	private BoardDAO dao;
+	
+	@Autowired
+	private WordManager mgr;
 	
 	// list.do
 		@RequestMapping("board/list.do")
@@ -64,6 +68,8 @@ public class BoardController2 {
 		public String board_detail(int no, Model model)
 		{
 			BoardVO vo=dao.boardDetailData(no);
+			List<WordVO> list=mgr.wordListData(vo.getContent());
+			model.addAttribute("list", list);
 			model.addAttribute("vo", vo);
 			return "board/detail";
 		}

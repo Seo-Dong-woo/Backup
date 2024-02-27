@@ -15,13 +15,13 @@ a.link:hover,img.img_click:hover{
 </style>
 </head>
 <body>
-	<div class="container" id="gymApp">
+	<div class="container" id="ypApp">
 		<div class="banner-section spad">
 	        <div class="container-fluid">
 	        	<h2 class="sectiontitle">헬스장 목록</h2>
 	        	<div class="row">
-       				<div class="col-md-3" v-for="(vo,index) in gym_list">
-       					<a :href="'../gym/gym_before_list_detail.do?no='+vo.no">
+       				<div class="col-md-3" v-for="(vo,index) in yp_list">
+       					<a :href="'../yp/yp_before_list_detail.do?no='+vo.no">
 		    				<div class="thumbnail">
 		        				<img :src="vo.poster" style="width:100%">
 		        				<div class="caption">
@@ -44,7 +44,7 @@ a.link:hover,img.img_click:hover{
 		<div>
 			<h3>최근 방문 헬스장</h3>
 	    	<span v-for="vo in cookie_list">
-	    		<a :href="'../gym/gym_list_detail.do?no='+vo.no">
+	    		<a :href="'../yp/yp_list_detail.do?no='+vo.no">
 	    			<img :src="vo.poster" :title="vo.title" style="width: 100px; height: 100px; margin-left: 5px">
 	    		</a>
 	    	</span>
@@ -56,7 +56,7 @@ a.link:hover,img.img_click:hover{
 		  // 데이터 관리 => 멤버변수 => this.
 		  data(){
 			  return {
-				  gym_list:[],
+				  yp_list:[],
 				  curpage:1,
 				  totalpage:0,
 				  startPage:0,
@@ -89,17 +89,17 @@ a.link:hover,img.img_click:hover{
 		  methods:{
 			  // 공통으로 사용되는 함수 => 반복제거 
 			  dataRecv(){
-				  axios.get('../gym/gym_list_vue.do',{
+				  axios.get('../yp/yp_list_vue.do',{
 					  params:{
 						  page:this.curpage
 					  }
 				  }).then(response=>{
 					  console.log(response.data)
-					  this.gym_list=response.data
+					  this.yp_list=response.data
 				  })
 				  
 				  // 페이지 
-				  axios.get('../gym/gym_page_vue.do',{
+				  axios.get('../yp/yp_page_vue.do',{
 					  params:{
 						  page:this.curpage
 					  }
@@ -111,7 +111,7 @@ a.link:hover,img.img_click:hover{
 					  this.endPage=response.data.endPage
 				  })
 				  
-				  axios.get('../gym/gym_cookie_vue.do').then(response=>{
+				  axios.get('../yp/yp_cookie_vue.do').then(response=>{
 					  console.log(response.data)
 					  this.cookie_list=response.data
 				  })
@@ -139,7 +139,7 @@ a.link:hover,img.img_click:hover{
 				  this.dataRecv()
 			  }
 		  }
-	  }).mount("#gymApp")
+	  }).mount("#ypApp")
 	</script>
 </body>
 </html>

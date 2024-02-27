@@ -19,8 +19,9 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<h3 class="text-center">답변형 게시판</h3>
+		<div class="banner-section spad">
+	        <div class="container-fluid">
+	        	<h2 class="sectiontitle">자유 게시판</h2>
 			<table class="table">
 				<tr>
 					<td>
@@ -45,7 +46,7 @@
 								<c:forEach var="i" begin="1" end="${vo.group_tab }">
 									&nbsp;&nbsp;
 								</c:forEach>
-								<img src="../board/re_icon.png">
+								<img src="../img/1.png" style="width: 15px; height: 15px">
 							</c:if>
 							<c:if test="${vo.subject=='관리자가 삭제한 게시물입니다' }">
 								<span style="color: gray">${vo.subject }</span>
@@ -79,6 +80,7 @@
 					</td>
 				</tr>
 			</table>
+		</div>
 		</div>
 		<div style="height: 20px"></div>
 	</div>

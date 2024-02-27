@@ -18,6 +18,7 @@ import com.sist.manager.*;
 public class BoardController {
    @Autowired
    private WordManager mgr;
+   
    @Autowired
    private FreeBoardService service;
    

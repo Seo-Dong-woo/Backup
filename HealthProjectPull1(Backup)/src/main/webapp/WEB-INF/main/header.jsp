@@ -184,6 +184,7 @@
                                 <li><a href="#">회원권</a></li>
                                 <li><a href="../board/list.do">스포츠센터 예약</a></li>
                                 <li><a href="../gym/gym_list.do">헬스장 목록</a></li>
+                                <li><a href="../yp/yp_list.do">가롱</a></li>
                                 <sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
                                 	<li><a href="../gym/gym_find.do">헬스장 찾기</a></li>
                                 	<li><a href="../freeboard/list.do">자유게시판</a></li>

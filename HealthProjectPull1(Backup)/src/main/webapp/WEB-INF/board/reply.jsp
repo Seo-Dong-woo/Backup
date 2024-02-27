@@ -18,8 +18,9 @@
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	<div class="container" id="fboardApp">
+		<div class="banner-section spad">
+	        <div class="container-fluid">
 			<h3 class="text-center">답변하기</h3>
 			<form method="post" action="reply_ok.do">
 				<table class="table">
@@ -56,6 +57,7 @@
 					</tr>
 				</table>
 			</form>
+		</div>
 		</div>
 		<div style="height: 20px"></div>
 	</div>
