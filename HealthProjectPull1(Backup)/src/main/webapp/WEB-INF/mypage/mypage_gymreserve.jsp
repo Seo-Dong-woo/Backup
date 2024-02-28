@@ -10,7 +10,40 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-	<div class="container" id="mypageApp">
+	<!-- ########################################################## -->
+	<div class="list" id="mypageApp">
+		<div class="row">
+			<div class="col-lg-6 col-sm-6">
+				<table class="member_manager" style="border: 1px;padding: 1px;width: 1000px;">
+					<h3>예약 관리</h3>
+					&nbsp;
+					<tr>
+						<td style="margin: 0px auto;">번호</td>
+         				<th></th>
+         				<th>업체명</th>
+         				<th>예약일</th>
+         				<th>예약시간</th>
+         				<th></th>
+					</tr>
+					<tr v-for="vo in reserve_list">
+          				<td>{{vo.rno}}</td>
+          				<td>
+           					<img :src="vo.gvo.poster" style="width: 30px;height: 30px">
+          				</td>
+          				<td>{{vo.gvo.title}}</td>
+          				<td>{{vo.rdate}}</td>
+          				<td>{{vo.rtime}}</td>
+          				<td>
+            				<span :class="vo.reserve_ok==1?'btn btn-xs btn-danger':'btn btn-xs btn-default'" v-text="vo.reserve_ok==0?'예약대기':'예약완료'"></span>
+            				&nbsp;<span class="btn btn-xs btn-primary" @click="reserveCancel(vo.rno)">취소</span>
+          				</td>
+        			</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- ########################################################## -->
+	<!-- <div class="container" id="mypageApp">
 		<div class="banner-section spad">
 	        <div class="container-fluid">
 	        	<h2 class="sectiontitle">예약 목록</h2>
@@ -39,7 +72,7 @@
       			</table>
       		</div>
       	</div>
-	</div>
+	</div> -->
 	<script>
    let mypageApp=Vue.createApp({
 	   data(){
@@ -63,6 +96,7 @@
 			   }).then(response=>{
 				   if(response.data==='yes')
 				   {
+					   alert("예약이 취소되었습니다")
 					   axios.get('../reserve/mypage_list_vue.do')
 					   .then(response=>{
 						   console.log(response.data)

@@ -15,22 +15,22 @@ public class GymReserveController {
 	@Autowired
 	private GymReserveService grService;
 	
-	@GetMapping("reserve/reserve_main.do")
+	@GetMapping("reserve/gymreserve.do")
 	public String gym_reserve()
 	{
-		return "reserve/reserve_main";
+		return "reserve/gymreserve";
 	}
 	
 	@GetMapping("mypage/mypage.do")
 	public String mypage_main()
 	{
-		return "mypage/mypage_main";
+		return "mypage/mypage_gymreserve";
 	}
 	
-	@GetMapping("adminpage/admin.do")
+	@GetMapping("admin/admin.do")
 	public String adminpage_main()
 	{
-		return "adminpage/admin_main";
+		return "admin/admin_gymreserve";
 	}
 }
 //@Controller

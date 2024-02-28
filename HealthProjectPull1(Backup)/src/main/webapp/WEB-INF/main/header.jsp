@@ -67,25 +67,27 @@
                     <div class="col-lg-4 text-right col-md-4">
                        <c:if test="${principal.username!=null }">
                         <ul class="inline">
-				          <li><i class="fa fa-phone"></i>${sessionScope.member.userName }( <!-- principal.username -->
+				          <li style="display: inline;"><i class="fa fa-user-circle"></i>&nbsp;${principal.username }( <!--  -->
 				            <sec:authorize access="hasRole('ROLE_ADMIN')">관리자</sec:authorize>
         					<sec:authorize access="hasRole('ROLE_USER')">일반사용자</sec:authorize>
 				          )</li>
-				          <li>님 로그인되었습니다</li>
+				          <li style="display: inline;">님 로그인되었습니다</li>
 				        </ul>
 				       </c:if>
                         <ul class="nav-right">
                             <li class="heart-icon text-center">
                               <c:if test="${principal.username==null }">
                                 <a href="../member/login.do">
-                                    <i class="icon_heart_alt"></i>
+                                    <!-- <i class="icon_heart_alt"></i> -->
+                                    <i class="fa fa-sign-in"></i>
                                     <span>히</span>
                                 <h6>로그인</h6>
                                 </a>
                               </c:if>
                               <c:if test="${principal.username!=null }">
                                 <a href="../member/logout.do">
-                                    <i class="icon_heart_alt"></i>
+                                    <!-- <i class="icon_heart_alt"></i> -->
+                                    <i class="fa fa-sign-out"></i>
                                     <span>히</span>
                                 <h6>로그아웃</h6>
                                 </a>
@@ -148,7 +150,8 @@
                             </li>
 							<li class="cart-price text-center">
                             	<i class="fa fa-user"></i>
-                            	<h6>고객센터</h6>
+                            	<a href="../mypage/jjim.do"><h6>마이페이지</h6></a>
+                            	<a href="../mypage/mypage.do"><h6>동우마이페이지</h6></a>
                             </li>
                         </ul>
                     </div>
@@ -157,7 +160,7 @@
         </div>
         <div class="nav-item">
             <div class="container">
-                <div class="nav-depart">
+               <!--  <div class="nav-depart">
                     <div class="depart-btn">
                         
                         <span>스토어</span>
@@ -167,70 +170,68 @@
 
                         </ul>
                     </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
+                </div> -->
+               <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">운동/건강</a>
+                        <li><a href="#">Health Info</a>
                         	<ul class="dropdown">
                         	    <li><a href="../training/training_list.do">부위별 운동</a></li>
                                 <li><a href="../exercise/exercise_list.do">운동별 소모 칼로리</a></li>
                                 <li><a href="../exercise/exercise_find.do">운동칼로리 찾기</a></li>
                                 <li><a href="../food/food_list.do">음식 칼로리</a></li>
                                 <li><a href="../food/food_find.do">음식칼로리 찾기</a></li>
+                                <li><a href="#">인바디보건소 찾기</a></li>
                             </ul>
                         </li>
-                        <li><a href="./shop.html">예약</a>
+                        <li><a href="#">Reservation</a>
                         	<ul class="dropdown">
                                 <li><a href="#">회원권</a></li>
                                 <li><a href="../board/list.do">스포츠센터 예약</a></li>
                                 <li><a href="../gym/gym_list.do">헬스장 목록</a></li>
-                                <li><a href="../yp/yp_list.do">가롱</a></li>
+                                <li><a href="#">요가/필라테스 목록</a></li>
                                 <sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
                                 	<li><a href="../gym/gym_find.do">헬스장 찾기</a></li>
                                 	<li><a href="../freeboard/list.do">자유게시판</a></li>
-                                	<li><a href="../reserve/reserve_main.do">헬스장 상담 예약</a></li>
+									<li><a href="../reserve/gymreserve.do">헬스장 상담 예약</a></li>
                                 </sec:authorize>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">대회출전권</a></li>
-                        <li><a href="../somoim/list.do">소모임</a>
+                        <li><a href="#">STORE</a>
+                    	   <ul class="dropdown">
+                    	   <li><a href="#">영양제/보조제</a></li>
+                    		<li class="active"><a href="../wshop/wshop_list.do">우먼즈</a></li>
+                        	<li><a href="../mshop/mshop_list.do">맨즈</a></li>
+                         </ul>
+                       </li>
+                        <li><a href="../somoim/list.do">Somoim</a>
                             <!-- <ul class="dropdown">
                                 <li><a href="#">모임 참가</a></li>
                                 <li><a href="#">모임 톡방</a></li>
                                 <li><a href="#">커뮤니티</a></li>
                             </ul> -->
-                        </li>
-                        <li><a href="./contact.html">커뮤니티</a>
+                            </li>
+                         
+                        <li><a href="#">Community</a>
                         	<ul class="dropdown">
                                 <li><a href="#">공지사항</a></li>
                                 <li><a href="#">자유게시판</a></li>
-                                <li><a href="#">인바디보건소 찾기</a></li>
                             </ul>
+                        </li>
                         </li>
                         <li><a href="../chat/chat.do">실시간채팅</a>
                             <ul class="dropdown">
                                 <li><a href="./blog-details.html">Blog Details</a></li>
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
                             </ul>
                         </li>
-                        <%-- <c:if test="${sessionScope.authority=='ROLE_ADMIN'}"> --%>
+                         <%-- <c:if test="${session.authority=='ROLE_ADMIN'}"> --%>
                         <li><a href="#">관리자메뉴</a>
                         	<ul class="dropdown">
                                 <li><a href="../admin/member.do">회원관리</a></li>
                                 <li><a href="./shopping-cart.html">게시판관리</a></li>
                             </ul>
                         </li>
-                        <sec:authorize access="hasRole('ROLE_USER')"> 
-        					<li><a href="../mypage/mypage.do">마이페이지</a></li>
-      					</sec:authorize>
-      					<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-        					<li><a href="../adminpage/admin.do">관리자페이지</a></li>
-      					</sec:authorize>
-                        <%-- </c:if> --%>
+                        <%-- </c:if>  --%>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>

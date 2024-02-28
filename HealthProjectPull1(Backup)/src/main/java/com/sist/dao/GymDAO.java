@@ -2,6 +2,11 @@ package com.sist.dao;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -52,5 +57,25 @@ public class GymDAO {
 	public List<GymVO> gymHome12()
 	{
 		return mapper.gymHome12();
+	}
+	
+	public int gymJjimCount(Map map)
+	{
+		return mapper.gymJjimCount(map);
+	}
+		
+	public void gymJjimInsertData(Map map)
+	{
+		mapper.gymJjimInsertData(map);
+	}
+		
+	public void gymJjimDeleteData(Map map)
+	{
+		mapper.gymJjimDeleteData(map);
+	}
+	
+	public List<GymJjimVO> gymJjimListData(String userId)
+	{
+		return mapper.gymJjimListData(userId);
 	}
 }

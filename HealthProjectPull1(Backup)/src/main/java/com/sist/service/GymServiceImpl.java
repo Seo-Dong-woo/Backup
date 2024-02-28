@@ -69,4 +69,28 @@ public class GymServiceImpl implements GymService {
 		// TODO Auto-generated method stub
 		return gDao.gymHome12();
 	}
+
+	@Override
+	public int gymJjimCount(Map map) {
+		// TODO Auto-generated method stub
+		return gDao.gymJjimCount(map);
+	}
+
+	@Override
+	public void gymJjimInsertData(Map map) {
+		// TODO Auto-generated method stub
+		gDao.gymJjimInsertData(map);
+	}
+
+	@Override
+	public void gymJjimDeleteData(Map map) {
+		// TODO Auto-generated method stub
+		gDao.gymJjimDeleteData(map);
+	}
+
+	@Override
+	public List<GymJjimVO> gymJjimListData(String userId) {
+		// TODO Auto-generated method stub
+		return gDao.gymJjimListData(userId);
+	}
 }

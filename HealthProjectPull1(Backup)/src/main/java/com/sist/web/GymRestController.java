@@ -4,9 +4,12 @@ import java.util.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -223,5 +226,81 @@ public class GymRestController {
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(map); // vo에서 map으로 받음
 		return json; // response.data
+	}
+	
+	@GetMapping(value="gym_jjim_count_vue.do", produces= "text/plain;charset=UTF-8")
+	public String gym_jjim_count(int no, HttpSession session) throws Exception 
+	{
+		
+		String userId=(String)session.getAttribute("userId");
+		System.out.println("찜체크 userid : "+userId);  
+		System.out.println("찜체크 no : "+no);
+		Map map = new HashMap();
+        map.put("userId", userId);
+        map.put("no", no);
+        int jjimCount = service.gymJjimCount(map);
+        
+	    // JSON으로 변경
+	    ObjectMapper mapper = new ObjectMapper();
+	    String json = mapper.writeValueAsString(jjimCount);
+	    return json;
+	}
+	
+	@PostMapping(value="gym_jjim_insert_vue.do", produces= "text/plain;charset=UTF-8")
+	public String gym_jjim_insert(int no, HttpSession session) throws Exception
+	{
+		
+		String result="no";
+		try 
+		{
+			String userId=(String)session.getAttribute("userId");
+			System.out.println("찜추가 userid : "+userId);  
+			System.out.println("찜추가 no : "+no);
+			Map map = new HashMap();
+	        map.put("userId", userId);
+	        map.put("no", no);
+	        service.gymJjimInsertData(map);
+	        result="yes";
+	        
+		}catch(Exception ex) 
+		{
+			result="no";
+		}
+		
+	    // 찜 추가 로직을 구현하고 성공적으로 추가된 경우 메시지를 반환
+	    return result;
+	}
+	
+	@PostMapping(value="gym_jjim_delete_vue.do", produces= "text/plain;charset=UTF-8")
+	public String gym_jjim_delete(int no, HttpSession session) throws Exception
+	{	
+		String result="no";
+		try 
+		{
+			String userId=(String)session.getAttribute("userId");
+			System.out.println(userId);
+			Map map = new HashMap();
+	        map.put("userId", userId);
+	        map.put("no", no);
+	        service.gymJjimDeleteData(map);
+		    // 찜 삭제 로직을 구현하고 성공적으로 삭제된 경우 메시지를 반환
+	        result="yes";
+		}catch(Exception ex) 
+		{
+			result="no";
+		}
+	    
+        return result;
+	}
+	
+	@GetMapping(value = "mypage_jjim_vue.do",produces = "text/plain;charset=UTF-8")
+	public String mypage_Jjim(HttpSession session) throws Exception
+	{
+		String userId=(String)session.getAttribute("userId");
+		List<GymJjimVO> mList=service.gymJjimListData(userId);
+		//JSON으로 변경
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(mList);
+		return json;
 	}
 }

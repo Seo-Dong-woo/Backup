@@ -93,7 +93,7 @@ a.link:hover,img.img_click:hover{
      data(){
       return {
          gym_list:[],
-         fd:'마포',
+         fd:'강남',
          gym_detail:{},
          page_list:{},
          no:1,

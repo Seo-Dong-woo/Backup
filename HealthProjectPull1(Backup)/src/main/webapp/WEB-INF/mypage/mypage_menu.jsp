@@ -22,13 +22,11 @@
                             <h4>Categories</h4>
                             <ul>
                                 <li><a href="#">회원관리</a></li>
-                                <li><a href="#">찜목록</a></li>
-                                <li><a href="../admin/admin.do">예약목록</a></li>
-                                <li><a href="#">스키/보드/스케이트보드/서핑/수영</a></li>
-                                <li><a href="#">볼링/탁구/테니스</a></li>
+                                <li><a href="../mypage/jjim.do">찜목록</a></li>
+                                <li><a href="../mypage/mypage.do">예약목록</a></li>
                             </ul>
                         </div>
-                        <div class="recent-post">
+                       <!--  <div class="recent-post">
                             <h4>Recent Post</h4>
                             <div class="recent-blog" v-for="(vo, index) in cookie_list.slice(0, 4)" :key="index">
 							    <a :href="'../somoim/detail.do?sno=' + vo.sno" class="rb-item">
@@ -41,8 +39,8 @@
 							        </div>
 							    </a>
 							</div>
-                        </div>
-                        <div class="blog-tags">
+                        </div> -->
+                        <!-- <div class="blog-tags">
                             <h4>Product Tags</h4>
                             <div class="tag-item">
                                 <a href="#">클라이밍</a>
@@ -53,7 +51,7 @@
                                 <a href="#">헬스</a>
                                 <a href="#">야구</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 <script>
 let SomoimApp=Vue.createApp({
