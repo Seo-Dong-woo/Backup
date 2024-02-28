@@ -65,8 +65,10 @@ public class BoardController2 {
 		
 		// detail.do?no=${vo.no}
 		@RequestMapping("board/detail.do")
-		public String board_detail(int no, Model model)
+		public String board_detail(int no, HttpSession session, Model model)
 		{
+			String userName=(String)session.getAttribute("userName");
+			model.addAttribute("userName", userName);
 			BoardVO vo=dao.boardDetailData(no);
 			List<WordVO> list=mgr.wordListData(vo.getContent());
 			model.addAttribute("list", list);

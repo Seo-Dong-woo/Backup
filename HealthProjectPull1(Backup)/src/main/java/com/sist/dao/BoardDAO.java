@@ -90,8 +90,8 @@ public class BoardDAO {
 			}
 			else
 			{
-				vo.setSubject("관리자가 삭제한 게시물입니다");
-				vo.setContent("관리자가 삭제한 게시물입니다");
+				vo.setSubject("삭제한 게시물입니다");
+				vo.setContent("삭제한 게시물입니다");
 				vo.setNo(no);
 				mapper.boardReplyDeleteUpdate(vo);
 			}

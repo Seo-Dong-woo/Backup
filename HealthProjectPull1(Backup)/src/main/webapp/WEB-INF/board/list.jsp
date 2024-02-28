@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,9 @@
 </style>
 </head>
 <body>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal"/> <!-- 세션 -->
+</sec:authorize>
 	<div class="container">
 		<div class="banner-section spad">
 	        <div class="container-fluid">
@@ -25,7 +29,9 @@
 			<table class="table">
 				<tr>
 					<td>
-						<a href="insert.do" class="btn btn-sm btn-primary">새글</a>
+						<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+							<a href="insert.do" class="btn btn-sm btn-primary">새글</a>
+						</sec:authorize>
 					</td>
 				</tr>
 			</table>
@@ -48,10 +54,10 @@
 								</c:forEach>
 								<img src="../img/1.png" style="width: 15px; height: 15px">
 							</c:if>
-							<c:if test="${vo.subject=='관리자가 삭제한 게시물입니다' }">
+							<c:if test="${vo.subject=='삭제한 게시물입니다' }">
 								<span style="color: gray">${vo.subject }</span>
 							</c:if>
-							<c:if test="${vo.subject!='관리자가 삭제한 게시물입니다' }">
+							<c:if test="${vo.subject!='삭제한 게시물입니다' }">
 								<a href="detail.do?no=${vo.no }">
 									${vo.subject }
 								</a>

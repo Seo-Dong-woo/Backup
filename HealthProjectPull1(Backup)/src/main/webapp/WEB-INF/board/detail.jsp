@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
 			{
 				bClick=true;
 				$('#delTr').hide();
-				$('#del').text("수정")
+				$('#del').text("삭제")
 			}
 		})
 		
@@ -114,9 +115,13 @@
 				</tr>
 				<tr>
 					<td colspan="4" class="text-right">
-						<a href="reply.do?pno=${vo.no }" class="btn btn-xs btn-danger">답변</a>
-						<a href="update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
-						<span href="#" class="btn btn-xs btn-info" id="del">삭제</span>
+						<sec:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+							<a href="reply.do?pno=${vo.no }" class="btn btn-xs btn-danger">답변</a>
+							<c:if test="${sessionScope.userName==vo.name }">
+								<a href="update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
+								<span href="#" class="btn btn-xs btn-info" id="del">삭제</span>
+							</c:if>
+						</sec:authorize>
 						<a href="list.do" class="btn btn-xs btn-warning">목록</a>
 					</td>
 				</tr>
